@@ -571,7 +571,7 @@ class DamAjaxForm {
 		let formAction = (element) ? element.getAttribute('action') : ''
 		
 		let url = ('url' in params) ? params.url : this.url
-		url = ('endpoint' in params) ? url+params.endpoint : ((formAction) ? url+formAction : url)
+		url = ('endpoint' in params) ? url+params.endpoint : ((formAction) ? formAction : url)
 		
 		let method = ('method' in params) ? params.method : ((formMethod) ? formMethod : 'POST')
 		let requestHeader = ('requestHeader' in params) ? params.requestHeader : null
