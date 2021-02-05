@@ -22,9 +22,6 @@ class DamAjaxForm {
 	setDefaultValueOnClean		= true
 	showSuccessLabel			= true
 	waitToCloseModalOnSuccess	= 2000
-	
-	callReloadGrid = null		//  (element,statusType) => { }
-	callToggleModal = null		// (element,statusType,action) => { }
 
     constructor(params = {}){
 		if(typeof params !== 'object') throw new Error('Expecting an Object ([Obj])');
@@ -40,8 +37,6 @@ class DamAjaxForm {
 		if('errorMessage' in params)			this.errorMessage = params.errorMessage
 		if('showSuccessLabel' in params)		this.showSuccessLabel = params.showSuccessLabel
 		if('timeout' in params)					this.timeout = params.timeout
-		if('reloadGrid' in params)				this.reloadGrid = params.reloadGrid
-		if('toggleModal' in params)				this.toggleModal = params.toggleModal
 
 		this.url = ('url' in params) ? params.url : ''
 	}
@@ -579,8 +574,6 @@ class DamAjaxForm {
 		let timeout = params.timeout
 		let preCheckResponse = true
 		let backCheckResponse = {}
-		let reloadGrid = ('reloadGrid' in params) ? params.reloadGrid : this.reloadGrid
-		let toggleModal = ('toggleModal' in params) ? params.toggleModal : this.toggleModal
 
 		if(typeof params.preCall == "function"){
 			preCheckResponse = params.preCall(paramsTosend)
@@ -622,13 +615,13 @@ class DamAjaxForm {
 						this.toggleStatusLabel(formId,'show',statusType,statusText)
 					}
 
-					if(typeof toggleModal == "function"){
+					if(typeof params.toggleModal == "function"){
 						setTimeout(function(){
 							toggleModal(element,statusType,'hide')
 						}, this.waitToCloseModalOnSuccess)
 					}
 
-					if(typeof reloadGrid == "function"){
+					if(typeof params.reloadGrid == "function"){
 						reloadGrid(element,statusType)
 					}
 				}
@@ -662,8 +655,6 @@ class DamAjaxForm {
 		let timeout = params.timeout
 		let preCheckResponse = true
 		let backCheckResponse = {}
-		let reloadGrid = ('reloadGrid' in params) ? params.reloadGrid : this.reloadGrid
-		let toggleModal = ('toggleModal' in params) ? params.toggleModal : this.toggleModal
 
 		paramsTosend = Object.assign({}, paramsTosend, this.collectButton(buttonId,attributes))
 
@@ -709,13 +700,13 @@ class DamAjaxForm {
 						this.toggleStatusLabel(statusLabelId,'show',statusType,statusText)
 					}
 
-					if(typeof toggleModal == "function"){
+					if(typeof params.toggleModal == "function"){
 						setTimeout(function(){
 							toggleModal(element,statusType,'hide')
 						}, this.waitToCloseModalOnSuccess)
 					}
 
-					if(typeof reloadGrid == "function"){
+					if(typeof params.reloadGrid == "function"){
 						reloadGrid(element,statusType)
 					}
 				}

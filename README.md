@@ -38,10 +38,7 @@ frontend.js
 		// debug: true,
 		// url: 'backend.php',		// you can also set the url here
 		// checkboxAsObject: true,	// checkboxes will be sent as an object {'checked':1,'value':data}
-		// setDefaultValueOnClean: false,
 		// showSuccessLabel: false,	// when the form is sent successfuly. it will show the success label 
-		// reloadGrid: (element,statusType) => console.log('-- RELOAD GRID GLOBAL--')
-		// toggleModal: (element,statusType,action) => console.log('-- TOGGLE MODAL GLOBAL --'),
 	});
 
     // it sets values inside form
@@ -57,7 +54,7 @@ frontend.js
     // 3. inputs are cleaned
     // 4. status label disappears
 	fm.sendFormOnSubmit('form-identifier',{
-		method: 'PUT',
+		// method: 'PUT',
         // url: 'backend.php',
 		// endpoint: '/user',
 		// preCall: data => {console.log('Precall -> ',data); return false;}, // puede devolver el texto de error
