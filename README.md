@@ -9,34 +9,50 @@ forntend.html
 <head>
 </head>
 <body>
+
 	<form id="form-identifier">
     <!-- action="backend.php" method="POST" / you can set the action and method that will be used -->
         <!-- here will be shown the status label -->
 		<div df-statusLabel></div>
+
 		<input type="text" name="input-name" value="value-input-name">
+		
         <input type="text" id="input-id" value="value-input-id">
+
 		<input type="text" name="same-name" value="value-same-name-1">
+
 		<input type="text" name="same-name" value="value-same-name-2">
 		<select name="list-name" id="checkList">
+
 			<option value="list-option-1">nonselected-option-1</option>
+
 			<option value="list-option-2" selected>selected-option-2</option>
+
 		</select>
         <!--this tag will be sent too -->
 		<p name="label-name" df-sendmetoo>label</p>
+
 		<input type="checkbox" name="check-name" value="value-checked" checked>
+
 		<input type="radio" name="radio-name" value="value-radio-1"> radio-1
+
 		<input type="radio" name="radio-name" value="value-radio-2" checked> radio-2
         <!--this tag will be disabled too. Like a submit button -->
 		<a name="link-name" href="https://www.google.com/" df-disablemetoo>link</a>
+
 		<textarea name="textarea-name">textarea</textarea>
+
 		<button type="submit" name="button-name-1" value="submited-button-1">button-1</button>
+
 		<button type="submit" name="button-name-2" value="nonsubmited-button-2">button-2</button>
 	</form>
+
 	<div id="label-id" df-statusLabel></div>
+
 	<button class="btn btn-success" id="button-identifier" value="button-1" param-1="param-1">button</button>
 </body>
 
-<script>  
+<script>
 document.addEventListener('DOMContentLoaded', (e) => {
     
     let fm = new DamAjaxForm({
