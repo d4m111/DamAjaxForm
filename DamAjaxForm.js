@@ -548,7 +548,7 @@ class DamAjaxForm {
 		this.ajaxPromise(
 			params
 		).then((data) => {
-			if(typeof params.callbackSuccess == "function"){
+			if(typeof params.callback == "function"){
 				params.callback(data.response,data.statusType,data.statusCode,data.statusText)
 			}
 		})

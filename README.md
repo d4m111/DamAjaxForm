@@ -84,6 +84,23 @@ frontend.js
 	})
 
 	// fm.sendButtonOnChange('checkList',data = {})
+	
+	// Call ajax
+
+	fm.ajaxCall({
+		url: "serv.php",
+		method : "POST",
+		// async: false,
+		// timeout: 50,
+		paramJson: true, // send params as json
+		params: {"name-1":"value-1"},
+		responseParseJson: true,	// parse json response
+		// 	requestHeader: [
+		// 		{'Authorization': 'Basic '+btoa('my_user'+':'+'my_pass')}, // autenticacion
+		// 		{'Content-type':'application/x-www-form-urlencoded'}
+		// 	],
+		callback: data => {}
+	});
 
 	
 
