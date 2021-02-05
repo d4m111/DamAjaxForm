@@ -99,7 +99,7 @@ frontend.js
 		// 		{'Authorization': 'Basic '+btoa('my_user'+':'+'my_pass')}, // autenticacion
 		// 		{'Content-type':'application/x-www-form-urlencoded'}
 		// 	],
-		callback: data => {}
+		callback: (data,statusType,statusCode,statusText) => {}
 	});
 
 	
