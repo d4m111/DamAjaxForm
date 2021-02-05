@@ -7,7 +7,7 @@ frontend.html
 
 	<form id="form-identifier">
     <!-- action="backend.php" method="POST" / you can set the action and method that will be used -->
-        <!-- here will be shown the status label -->
+        <!-- the status label will be shown here -->
 		<div df-statusLabel></div>
 		<input type="text" name="input-name" value="value-input-name">
         <input type="text" id="input-id" value="value-input-id">
