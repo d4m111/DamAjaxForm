@@ -29,7 +29,7 @@ frontend.html
 	</form>
 	<div id="label-id" df-statusLabel></div>
 	<th>
-	<button class="btn btn-success" id="button-identifier" value="button-1" param-1="param-1">button</button>
+	<button class="btn btn-success" id="button-identifier" value="button-1" param-1="value-param-1">button</button>
 
 frontend.js
 --------------------------------------------------------------------------------------------------------------
@@ -49,6 +49,7 @@ frontend.js
 	});
 
     // when the submit button is clicked
+
     // 1. status label appears
     // 2. submit buttons are disabled
     // 3. inputs are cleaned
@@ -68,12 +69,13 @@ frontend.js
 	})
     
     // when the button is clicked
+
     fm.sendButtonOnClick('button-identifier',data = {
 		'statusLabelId': 'label-id',
 		'attributes': ['param-1'],
-		// preCall: data => {console.log('Precall -> ',data); return false;}, // puede devolver el texto de error
-		// reloadGrid: (element,statusType) => console.log('-- RELOAD GRID LOCAL --'),
-		// toggleModal: (element,statusType,action) => console.log('-- TOGGLE MODAL LOCAL --'),
+		// preCall: data => { return false }, // puede devolver el texto de error
+		// reloadGrid: (element,statusType) => {},
+		// toggleModal: (element,statusType,action) => {},
 		callback: (data,statusType,statusCode,statusText) => {
 			console.log('button response: ',data,statusType,statusCode,statusText)
 			// return {statusType:'info',statusText:'custom error'}
@@ -82,6 +84,8 @@ frontend.js
 	})
 
 	// fm.sendButtonOnChange('checkList',data = {})
+
+	
 
 backend.php
 --------------------------------------------------------------------------------------------------------------
