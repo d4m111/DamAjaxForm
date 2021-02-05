@@ -38,12 +38,12 @@ frontend.html
 	<button class="btn btn-success" id="button-identifier" value="button-1" param-1="param-1">button</button>
 </body>
 
-<script>
+
 
 document.addEventListener('DOMContentLoaded', (e) => {
-    
+
     let fm = new DamAjaxForm({
-		
+
 		// debug: true,
 		url: 'backend.php',
 		// checkboxAsObject: true,
@@ -98,19 +98,22 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 })
 
-</script>
-
 
 backend.php
 --------------------------------------------------------------------------------------------------------------
 
-<?php
-
 $r = $_POST['input-name']        // value-input-name
+
 $r = $_POST['input-id']          // value-input-id
+
 $r = $_POST['same-name']         // [0 => value-same-name-1', 1 => 'value-same-name-2']
+
 $r = $_POST['list-name']         // selected-option-2
+
 $r = $_POST['label-name']        // label
+
 $r = $_POST['check-name']        // value-checked
+
 $r = $_POST['radio-name']        // value-radio-2
+
 $r = $_POST['textarea-name']     // textarea
