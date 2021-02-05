@@ -32,9 +32,6 @@ forntend.html
 		<button type="submit" name="button-name-1" value="submited-button-1">button-1</button>
 		<button type="submit" name="button-name-2" value="nonsubmited-button-2">button-2</button>
 	</form>
-
-	<hr>
-
 	<div id="label-id" df-statusLabel></div>
 	<button class="btn btn-success" id="button-identifier" value="button-1" param-1="param-1">button</button>
 </body>
