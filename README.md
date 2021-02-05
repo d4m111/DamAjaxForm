@@ -4,8 +4,8 @@ pure javascript form sender
 frontend.html
 --------------------------------------------------------------------------------------------------------------
 
-	<form id="form-identifier">
-	<!-- action="backend.php" method="POST" / you can set the action and method that will be used -->
+	<!-- you can set the action and method that will be used -->
+	<form id="form-identifier" action="backend.php" method="POST">
 		<!-- the status label will be shown here -->
 		<div df-statusLabel></div>
 		<input type="text" name="input-name" value="value-input-name">
@@ -35,29 +35,27 @@ frontend.js
 --------------------------------------------------------------------------------------------------------------
 
     let fm = new DamAjaxForm({
-
 		// debug: true,
-		url: 'backend.php',
-		// checkboxAsObject: true,
+		// url: 'backend.php',		// you can also set the url here
+		// checkboxAsObject: true,	// checkboxes will be sent as an object {'checked':1,'value':data}
 		// setDefaultValueOnClean: false,
-		// closeModalOnSubmit: false,
-		// showSuccessLabel: false,
+		// showSuccessLabel: false,	// when the form is sent successfuly. it will show the success label 
 		// reloadGrid: (element,statusType) => console.log('-- RELOAD GRID GLOBAL--')
 		// toggleModal: (element,statusType,action) => console.log('-- TOGGLE MODAL GLOBAL --'),
 	});
 
-    // fills elements inside form
+    // it sets values inside form
 	fm.fillForm('form-identifier',{
-		'input-name':'fill-input-name',
-		'input-id':'fill-input-id',
-		'same-name':['fill-same-name-1','fill-same-name-2']
+		'input-name':'value-input-name',
+		'input-id':'value-input-id',
+		'same-name':['value-same-name-1','value-same-name-2']
 	});
 
     // when the submit button is clicked
-    // 1. appears status label
-    // 2. the submit button is disabled
+    // 1. status label appears
+    // 2. submit buttons are disabled
     // 3. inputs are cleaned
-    // 4. disappears status label
+    // 4. status label disappears
 	fm.sendFormOnSubmit('form-identifier',{
 		method: 'PUT',
         // url: 'backend.php',
