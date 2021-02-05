@@ -96,11 +96,11 @@ frontend.js
 
 	// when the element is changed
 
-	// fm.sendButtonOnChange('checkList',data = {
+	// fm.sendButtonOnChange('element-identifier',data = {
 		// same parameters as sendButtonOnClick()
 	})
 	
-	// Call ajax
+	// You can make ajax calls 
 
 	fm.ajaxCall({
 		url: "backend.php",
