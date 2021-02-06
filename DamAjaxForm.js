@@ -617,12 +617,8 @@ class DamAjaxForm {
 
 					if(typeof params.toggleModal == "function"){
 						setTimeout(function(){
-							toggleModal(element,statusType,'hide')
+							params.toggleModal(element,statusType,'hide')
 						}, this.waitToCloseModalOnSuccess)
-					}
-
-					if(typeof params.reloadGrid == "function"){
-						reloadGrid(element,statusType)
 					}
 				}
 
@@ -702,12 +698,8 @@ class DamAjaxForm {
 
 					if(typeof params.toggleModal == "function"){
 						setTimeout(function(){
-							toggleModal(element,statusType,'hide')
+							params.toggleModal(element,statusType,'hide')
 						}, this.waitToCloseModalOnSuccess)
-					}
-
-					if(typeof params.reloadGrid == "function"){
-						reloadGrid(element,statusType)
 					}
 				}
 

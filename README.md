@@ -56,8 +56,9 @@ frontend.js
 
     // 1. status label appears
     // 2. submit buttons are disabled
-    // 3. inputs are cleaned
-    // 4. status label disappears
+	// 3. form sends data
+    // 5. inputs are cleaned
+    // 6. status label disappears
 	fm.sendFormOnSubmit('form-identifier',{
 		// method: 'PUT',
         // url: 'backend.php',
@@ -70,11 +71,6 @@ frontend.js
 		callback: (data,statusType,statusCode,statusText) => {
 			// return {statusType:'error',statusText:'custom error'} // you can set massage in the status label
 			// return {break:'break'}
-		},
-		reloadGrid: (element,statusType) => {
-			// if callback() returns statusType:'error', reloadGrid() will not be called
-			// if callback() returns 'break', reloadGrid() will not be called
-			// If you have a table with date. You could put the code to reload it
 		},
 		toggleModal: (element,statusType,action) => {
 			// if callback() returns statusType:'error', toggleModal() will not be called
@@ -90,7 +86,6 @@ frontend.js
 		'attributes': ['param-1'],		// the atribute 'param-1' will be sent as a param <button id="id" param-1="value">..
 		// preCall: data => { return false },
 		// callback: (data,statusType,statusCode,statusText) => {}
-		// reloadGrid: (element,statusType) => {},
 		// toggleModal: (element,statusType,action) => {}
 	})
 
