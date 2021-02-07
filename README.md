@@ -42,7 +42,6 @@ frontend.js
 		// debug: true,
 		// url: 'backend.php',				// you can also set the url here
 		// checkboxAsObject: true,			// checkboxes will be sent as an object {'checked':1,'value':data}
-		// showSuccessLabel: false,			// when the form is sent successfuly. it will show the success label 
 	});
 
     // it sets values inside form
