@@ -20,7 +20,6 @@ class DamAjaxForm {
 	checkboxAsVal				= false		// TRUE: el value será 1 si está chequeado o sino 0
 	cleanHiddenInput			= false
 	setDefaultValueOnClean		= true
-	showSuccessLabel			= true
 	waitToCloseModalOnSuccess	= 2000
 
     constructor(params = {}){
@@ -35,7 +34,6 @@ class DamAjaxForm {
 		if('statusMessage' in params)			this.statusMessage = params.statusMessage
 		if('successMessage' in params)			this.successMessage = params.successMessage
 		if('errorMessage' in params)			this.errorMessage = params.errorMessage
-		if('showSuccessLabel' in params)		this.showSuccessLabel = params.showSuccessLabel
 		if('timeout' in params)					this.timeout = params.timeout
 
 		this.url = ('url' in params) ? params.url : ''
@@ -611,9 +609,7 @@ class DamAjaxForm {
 				if(statusBreak.toLowerCase() != 'break'){
 					this.cleanForm(formId)
 
-					if(!(statusType == 'success' && this.showSuccessLabel !== true)){
-						this.toggleStatusLabel(formId,'show',statusType,statusText)
-					}
+					this.toggleStatusLabel(formId,'show',statusType,statusText)
 
 					if(typeof params.toggleModal == "function"){
 						setTimeout(function(){
@@ -692,10 +688,9 @@ class DamAjaxForm {
 				let statusText	= (typeof backCheckResponse === 'object' && 'statusText' in backCheckResponse) ? backCheckResponse.statusText : ''
 				
 				if(statusBreak.toLowerCase() != 'break'){
-					if(!(statusType == 'success' && this.showSuccessLabel !== true)){
-						this.toggleStatusLabel(statusLabelId,'show',statusType,statusText)
-					}
-
+					
+					this.toggleStatusLabel(statusLabelId,'show',statusType,statusText)
+					
 					if(typeof params.toggleModal == "function"){
 						setTimeout(function(){
 							params.toggleModal(element,statusType,'hide')
