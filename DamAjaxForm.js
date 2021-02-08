@@ -614,7 +614,7 @@ class DamAjaxForm {
 						this.cleanForm(formId)
 					}
 
-					if(!isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
+					if(statusText == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
 						setTimeout(function(){
 							this.toggleStatusLabel(formId,'hide')
 							
@@ -702,7 +702,7 @@ class DamAjaxForm {
 
 					this.toggleStatusLabel(formId,'show',statusType,statusText)
 					
-					if(!isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
+					if(statusText == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
 						setTimeout(function(){
 							this.toggleStatusLabel(formId,'hide')
 							
