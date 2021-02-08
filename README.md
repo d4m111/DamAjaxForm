@@ -70,11 +70,6 @@ frontend.js
 		callback: (data,statusType,statusCode,statusText) => {
 			// return {statusType:'error',statusText:'custom error'} // you can set massage in the status label
 			// return {break:'break'}
-		},
-		toggleModal: (element,statusType,action) => {
-			// if callback() returns statusType:'error', toggleModal() will not be called
-			// if callback() returns break:'break', toggleModal() will not be called
-			// If you have the form inside a modal. you could put the code to close it
 		}
 	})
     
@@ -85,7 +80,6 @@ frontend.js
 		'attributes': ['param-1'],		// the atribute 'param-1' will be sent as a param <button id="id" param-1="value">..
 		// preCall: data => { return false },
 		// callback: (data,statusType,statusCode,statusText) => {}
-		// toggleModal: (element,statusType,action) => {}
 	})
 
 	// when the element is changed
