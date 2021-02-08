@@ -614,21 +614,18 @@ class DamAjaxForm {
 						this.cleanForm(formId)
 					}
 
-					if(!isNaN(this.waitToCloseSuccessStatusLabel)){
-						if(this.waitToCloseSuccessStatusLabel > 0){
-							setTimeout(function(){
-								this.toggleStatusLabel(formId,'hide')
-								
-								if(typeof params.finalCallback == "function"){
-									params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
-								}
-							}, this.waitToCloseSuccessStatusLabel)
-						}else{
+					if(!isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
+						setTimeout(function(){
+							this.toggleStatusLabel(formId,'hide')
+							
 							if(typeof params.finalCallback == "function"){
 								params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
 							}
+						}, this.waitToCloseSuccessStatusLabel)
+					}else{
+						if(typeof params.finalCallback == "function"){
+							params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
 						}
-
 					}
 				}
 
@@ -705,21 +702,18 @@ class DamAjaxForm {
 
 					this.toggleStatusLabel(formId,'show',statusType,statusText)
 					
-					if(!isNaN(this.waitToCloseSuccessStatusLabel)){
-						if(this.waitToCloseSuccessStatusLabel > 0){
-							setTimeout(function(){
-								this.toggleStatusLabel(formId,'hide')
-								
-								if(typeof params.finalCallback == "function"){
-									params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
-								}
-							}, this.waitToCloseSuccessStatusLabel)
-						}else{
+					if(!isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
+						setTimeout(function(){
+							this.toggleStatusLabel(formId,'hide')
+							
 							if(typeof params.finalCallback == "function"){
 								params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
 							}
+						}, this.waitToCloseSuccessStatusLabel)
+					}else{
+						if(typeof params.finalCallback == "function"){
+							params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
 						}
-
 					}
 				}
 			})
