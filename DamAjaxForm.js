@@ -614,6 +614,9 @@ class DamAjaxForm {
 						this.cleanForm(formId)
 					}
 
+					// probar
+					// await new Promise(resolve => setTimeout(resolve, 5000))
+
 					if(statusText == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
 						setTimeout(function(){
 							this.toggleStatusLabel(formId,'hide')
