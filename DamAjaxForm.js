@@ -20,7 +20,7 @@ class DamAjaxForm {
 	checkboxAsVal				= false		// TRUE: el value será 1 si está chequeado o sino 0
 	cleanHiddenInput			= false
 	setDefaultValueOnClean		= true
-	waitToCloseModalOnSuccess	= 2000
+	waitToCloseSuccessStatusLabel	= 2000		// 0 : no timeout
 
     constructor(params = {}){
 		if(typeof params !== 'object') throw new Error('Expecting an Object ([Obj])');
@@ -607,14 +607,28 @@ class DamAjaxForm {
 				let statusText	= (typeof backCheckResponse === 'object' && 'statusText' in backCheckResponse) ? backCheckResponse.statusText : ''
 				
 				if(statusBreak.toLowerCase() != 'break'){
-					this.cleanForm(formId)
 
 					this.toggleStatusLabel(formId,'show',statusType,statusText)
 
-					if(typeof params.toggleModal == "function"){
-						setTimeout(function(){
-							params.toggleModal(element,statusType,'hide')
-						}, this.waitToCloseModalOnSuccess)
+					if(statusText != 'error'){
+						this.cleanForm(formId)
+					}
+
+					if(!isNaN(this.waitToCloseSuccessStatusLabel)){
+						if(this.waitToCloseSuccessStatusLabel > 0){
+							setTimeout(function(){
+								this.toggleStatusLabel(formId,'hide')
+								
+								if(typeof params.finalCallback == "function"){
+									params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
+								}
+							}, this.waitToCloseSuccessStatusLabel)
+						}else{
+							if(typeof params.finalCallback == "function"){
+								params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
+							}
+						}
+
 					}
 				}
 
@@ -686,18 +700,28 @@ class DamAjaxForm {
 				let statusBreak	= (typeof backCheckResponse === 'object' && 'break' in backCheckResponse) ? backCheckResponse.break : ''
 				let statusType	= (typeof backCheckResponse === 'object' && 'statusType' in backCheckResponse) ? backCheckResponse.statusType : data.statusType
 				let statusText	= (typeof backCheckResponse === 'object' && 'statusText' in backCheckResponse) ? backCheckResponse.statusText : ''
-				
+
 				if(statusBreak.toLowerCase() != 'break'){
+
+					this.toggleStatusLabel(formId,'show',statusType,statusText)
 					
-					this.toggleStatusLabel(statusLabelId,'show',statusType,statusText)
-					
-					if(typeof params.toggleModal == "function"){
-						setTimeout(function(){
-							params.toggleModal(element,statusType,'hide')
-						}, this.waitToCloseModalOnSuccess)
+					if(!isNaN(this.waitToCloseSuccessStatusLabel)){
+						if(this.waitToCloseSuccessStatusLabel > 0){
+							setTimeout(function(){
+								this.toggleStatusLabel(formId,'hide')
+								
+								if(typeof params.finalCallback == "function"){
+									params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
+								}
+							}, this.waitToCloseSuccessStatusLabel)
+						}else{
+							if(typeof params.finalCallback == "function"){
+								params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)
+							}
+						}
+
 					}
 				}
-
 			})
 		}
 		
