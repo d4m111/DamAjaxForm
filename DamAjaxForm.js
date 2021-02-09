@@ -10,16 +10,16 @@
 
 class DamAjaxForm {
 	
-	debug						= false
-	validationMessage			= "Validation failed"
-	statusMessage				= "Processing.. "
-	successMessage				= "Successful Operation"
-	errorMessage				= "Operation Failed"
-	timeout						= 30000		// 0 : no timeout
-	checkboxAsObject			= false		// TRUE: devuelve un objeto {value:"valor",checked:"1"};
-	checkboxAsVal				= false		// TRUE: el value será 1 si está chequeado o sino 0
-	cleanHiddenInput			= false
-	setDefaultValueOnClean		= true
+	debug							= false
+	validationMessage				= "Validation failed"
+	statusMessage					= "Processing.. "
+	successMessage					= "Successful Operation"
+	errorMessage					= "Operation Failed"
+	timeout							= 30000		// 0 : no timeout
+	checkboxAsObject				= false		// TRUE: devuelve un objeto {value:"valor",checked:"1"};
+	checkboxAsVal					= false		// TRUE: el value será 1 si está chequeado o sino 0
+	cleanHiddenInput				= false
+	setDefaultValueOnClean			= true
 	waitToCloseSuccessStatusLabel	= 2000		// 0 : no timeout
 
     constructor(params = {}){
