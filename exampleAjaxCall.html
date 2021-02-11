@@ -13,7 +13,9 @@
 
 <script>
 
-    let fm = new DamAjaxForm();
+    let fm = new DamAjaxForm({
+        debug: true,
+    });
 
     fm.ajaxCall({
         url: "backend.php",

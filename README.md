@@ -1,9 +1,7 @@
 # DamAjaxForm
 pure javascript form sender
 
-    let fm = new DamAjaxForm({
-		// url: 'backend.php',				// you can also set the url here
-	});
+    let fm = new DamAjaxForm();
 
     // it sets values inside form
 
