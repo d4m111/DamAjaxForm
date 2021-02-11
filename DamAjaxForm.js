@@ -20,7 +20,7 @@ class DamAjaxForm {
 	checkboxAsVal					= false		// TRUE: el value será 1 si está chequeado o sino 0
 	cleanHiddenInput				= false
 	setDefaultValueOnClean			= true
-	waitToCloseSuccessStatusLabel	= 2000		// 0 : no timeout
+	waitToCloseSuccessStatusLabel	= 10000		// 0 : no timeout
 
     constructor(params = {}){
 		if(typeof params !== 'object') throw new Error('Expecting an Object ([Obj])');
@@ -346,7 +346,7 @@ class DamAjaxForm {
 
 		let param = {};
 		let element = document.querySelector("#"+buttonId);
-		param[(element.name) ? element.name : buttonId] = element.value;
+		param[ (element.name) ? element.name : buttonId ] = element.value;
 
 		if(element.hasAttributes()){
 			for(let attrFromList of attributes){
@@ -614,11 +614,9 @@ class DamAjaxForm {
 						this.cleanForm(formId)
 					}
 
-					// probar
-					// await new Promise(resolve => setTimeout(resolve, 5000))
-
-					if(statusText == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
-						setTimeout(function(){
+					if(statusType == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
+						
+						setTimeout(() => {
 							this.toggleStatusLabel(formId,'hide')
 							
 							if(typeof params.finalCallback == "function"){
@@ -677,7 +675,10 @@ class DamAjaxForm {
 		}
 
 		if(preCheckResponse === true){
-			this.toggleStatusLabel(statusLabelId,'show','status')
+			if(statusLabelId){
+				this.toggleStatusLabel(statusLabelId,'show','status')
+			}
+			
 			this.toggleSendButton(buttonId,'disable')
 			
 			this.ajaxPromise({
@@ -689,7 +690,10 @@ class DamAjaxForm {
 				timeout,
 			}).then((data) => {
 				
-				this.toggleStatusLabel(statusLabelId,"hide")
+				if(statusLabelId){
+					this.toggleStatusLabel(statusLabelId,"hide")
+				}
+
 				this.toggleSendButton(buttonId,'enable')
 
 				if(typeof params.callback == "function"){
@@ -702,12 +706,15 @@ class DamAjaxForm {
 				let statusText	= (typeof backCheckResponse === 'object' && 'statusText' in backCheckResponse) ? backCheckResponse.statusText : ''
 
 				if(statusBreak.toLowerCase() != 'break'){
+					if(statusLabelId){
+						this.toggleStatusLabel(statusLabelId,'show',statusType,statusText)
+					}
 
-					this.toggleStatusLabel(formId,'show',statusType,statusText)
-					
-					if(statusText == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
-						setTimeout(function(){
-							this.toggleStatusLabel(formId,'hide')
+					if(statusType == 'success' && !isNaN(this.waitToCloseSuccessStatusLabel) && this.waitToCloseSuccessStatusLabel > 0){
+						setTimeout(() => {
+							if(statusLabelId){
+								this.toggleStatusLabel(statusLabelId,'hide')
+							}
 							
 							if(typeof params.finalCallback == "function"){
 								params.finalCallback(data.response,data.statusType,data.statusCode,data.statusText)

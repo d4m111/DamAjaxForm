@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example sendCall</title>
+</head>
+<body>
+    <!-- you can set the action and method that will be used -->
+	<form id="form-identifier" action="backend.php" method="POST">
+		
+		<!-- the status label will be shown here -->
+		<div df-statusLabel></div>
+
+		<input type="text" name="input-name" value="value-input-name"><br><br>
+		<input type="text" id="input-id" value="value-input-id"><br><br>
+		<input type="text" name="same-name" value="value-same-name-1"><br><br>
+		<input type="text" name="same-name" value="value-same-name-2"><br><br>
+		<select name="list-name"><br><br>
+			<option value="list-option-1">nonselected-option-1</option>
+			<option value="list-option-2" selected>selected-option-2</option>
+		</select>
+		<!--this tag will be sent too -->
+		<p name="label-name" df-sendmetoo>label</p><br>
+		<input type="checkbox" name="check-name" value="value-checked" checked><br><br>
+		<input type="radio" name="radio-name" value="value-radio-1"> radio-1
+		<input type="radio" name="radio-name" value="value-radio-2" checked> radio-2<br><br>
+		<!--this tag will be disabled too. Like a submit button -->
+		<a name="link-name" href="https://www.google.com/" df-disablemetoo>link</a><br><br>
+		<textarea name="textarea-name">textarea</textarea><br><br>
+		<button type="submit" name="button-name-1" value="submited-button-1">button-1</button>
+		<button type="submit" name="button-name-2" value="submited-button-2">button-2</button>
+	</form>
+    
+</body>
+</html>
+
+<script src="DamAjaxForm.js" type="text/javascript"></script> 
+
+<script>
+
+    let fm = new DamAjaxForm({
+        debug: true,
+        // url: 'backend.php',				// you can also set the url here
+		// checkboxAsObject: true,			// checkboxes will be sent as an object {'checked':1,'value':data}
+    });
+
+    // it sets values inside form
+
+	fm.fillForm('form-identifier',{
+		'input-name':'CUSTOM-value-input-name',
+		'input-id':'CUSTOM-value-input-id',
+		'same-name':['CUSTOM-value-same-name-1','CUSTOM-value-same-name-2']
+	});
+
+    // when the submit button is clicked
+
+    // 1. status label appears
+    // 2. submit buttons are disabled
+	// 3. form sends data
+    // 5. inputs are cleaned
+    // 6. status label disappears
+
+    fm.sendFormOnSubmit('form-identifier',{
+		// method: 'PUT',                   // if you don't set the method. It will be take from <form method="POST">
+        // url: 'backend.php',              // if you don't set the url. It will be take from <form action="backend.php">
+		// endpoint: '/endpoint',			// backend.php/endpoint
+		// timeout: 10,
+		responseParseJson: true,
+		
+        requestHeader: [
+			{'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+		],
+		preCall: data => {					// it can be used to validate
+			return true	 				    // form is sent
+			// return false	 				// form is not sent
+			// return 'an error message'	// form is not sent and shows an error message
+		},
+		callback: (data,statusType,statusCode,statusText) => {
+			// return {statusType:'error',statusText:'custom error'} // you can set massage in the status label
+			// return {break:'break'}		// you can stop here. the status label success/error don be shown and form will not be cleaned
+		}
+	})
+
+</script>
