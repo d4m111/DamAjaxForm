@@ -61,8 +61,8 @@
     // 6. status label disappears
 
     fm.sendFormOnSubmit('form-identifier',{
-		// method: 'PUT',                   // if you don't set the method. It will be take from <form method="POST">
-        // url: 'backend.php',              // if you don't set the url. It will be take from <form action="backend.php">
+		// method: 'PUT',                   // if you don't set the method it will be take from <form method="POST">
+        // url: 'backend.php',              // if you don't set the url it will be take from <form action="backend.php">
 		// endpoint: '/endpoint',			// backend.php/endpoint
 		// timeout: 10,
 		responseParseJson: true,
@@ -73,7 +73,7 @@
 		preCall: data => {					// it can be used to validate
 			return true	 				    // form is sent
 			// return false	 				// form is not sent
-			// return 'an error message'	// form is not sent and shows an error message
+			// return 'an error message'	// form is not sent and it shows an error message
 		},
 		callback: (data,statusType,statusCode,statusText) => {
 			// return {statusType:'error',statusText:'custom error'} // you can set massage in the status label
