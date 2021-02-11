@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Example</title>
@@ -9,6 +9,30 @@
 </body>
 </html>
 
+<script src="DamAjaxForm.js" type="text/javascript"></script> 
+
 <script>
+
+    let fm = new DamAjaxForm({
+        debug: true,
+    });
+
+    fm.ajaxCall({
+        url: "backend.php",
+        method : "POST",
+        // async: false,
+		// timeout: 10,
+		// paramJson: true,					// send params as json
+        responseParseJson : true,           // parse response as json
+        params: {
+            "name":"value"
+        },
+        requestHeader: [
+			{'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+		],
+        callback: (data,statusType,statusCode,statusText) => {
+            console.log('->',data,'-',statusType,'-',statusCode,'-',statusText)
+        }
+    });
 
 </script>
