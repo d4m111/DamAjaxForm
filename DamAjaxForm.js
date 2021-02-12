@@ -482,10 +482,6 @@ class DamAjaxForm {
 				xhr.setRequestHeader('Authorization','Basic '+btoa(`${params.basicAuth.user}:${params.basicAuth.password}`))
 			}
 
-			if(params.responseParseJson === true){
-				xhr.setRequestHeader('Content-Type','application/json') // si se definió otro contentType, este va a ser pisado
-			}
-
 			if(params && typeof params.requestHeader === 'object' && params.requestHeader){
 				if(Array.isArray(params.requestHeader)){
 					for(let k in params.requestHeader){
