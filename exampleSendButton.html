@@ -38,7 +38,8 @@
             password: 'password'
         },
         requestHeader: [
-			// {'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+			// {'Content-Type':'multipart/form-data'},
+			// {'Authorization' : 'Bearer 12345678'}, // authentication token
 		],
 		preCall: data => { 
 			return true	 				    // form is sent
@@ -61,6 +62,7 @@
             password: 'password'
         },
         requestHeader: [
+			// {'Content-Type':'multipart/form-data'},
 			// {'Authorization' : 'Bearer 12345678')}, // authentication token
 		],
 		preCall: data => { 
