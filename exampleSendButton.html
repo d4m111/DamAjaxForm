@@ -33,8 +33,12 @@
 		attributes: ['param-1'],		    // the atribute 'param-1' will be sent as a param
         responseParseJson: true,
         // timeout: 10,
+		basicAuth : {
+            user: 'username',
+            password: 'password'
+        },
         requestHeader: [
-			{'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+			// {'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
 		],
 		preCall: data => { 
 			return true	 				    // form is sent
@@ -52,8 +56,12 @@
 		statusLabelId: 'label-id',
         responseParseJson: true,
         // timeout: 10,
+		basicAuth : {
+            user: 'username',
+            password: 'password'
+        },
         requestHeader: [
-			{'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+			// {'Authorization' : 'Bearer 12345678')}, // authentication token
 		],
 		preCall: data => { 
 			return true	 				    // form is sent

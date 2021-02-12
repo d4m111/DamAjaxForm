@@ -66,9 +66,12 @@
 		// endpoint: '/endpoint',			// backend.php/endpoint
 		// timeout: 10,
 		responseParseJson: true,
-		
+		basicAuth : {
+            user: 'username',
+            password: 'password'
+        },
         requestHeader: [
-			{'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+			// {'Authorization' : 'Bearer 12345678'}, // authentication token
 		],
 		preCall: data => {					// it can be used to validate
 			return true	 				    // form is sent

@@ -27,8 +27,12 @@
         params: {
             "name":"value"
         },
+        basicAuth : {
+            user: 'username',
+            password: 'password'
+        },
         requestHeader: [
-			{'Authorization' : 'Basic '+btoa('username'+':'+'password')}, // authentication
+			// {'Authorization' : 'Bearer 12345678'}, // authentication token
 		],
         callback: (data,statusType,statusCode,statusText) => {
             console.log('->',data,'-',statusType,'-',statusCode,'-',statusText)

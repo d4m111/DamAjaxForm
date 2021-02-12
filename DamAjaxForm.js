@@ -478,6 +478,10 @@ class DamAjaxForm {
 			
 			xhr.open(params.method, params.url, params.async);
 
+			if((typeof params.basicAuth === 'object' && 'user' in params.basicAuth && 'password' in params.basicAuth)){
+				params.requestHeader.push({'Authorization' : 'Basic '+btoa(`${params.basicAuth.user}:${params.basicAuth.password}`)})
+			}
+
 			if(params && typeof params.requestHeader === 'object' && params.requestHeader){
 				if(Array.isArray(params.requestHeader)){
 					for(let k in params.requestHeader){
@@ -487,8 +491,6 @@ class DamAjaxForm {
 							xhr.setRequestHeader(Object.keys(v)[0], v[Object.keys(v)[0]]);
 						}
 					}
-				}else{
-					xhr.setRequestHeader(Object.keys(params.requestHeader)[0], params.requestHeader[Object.keys(params.requestHeader)[0]]);
 				}
 			}
 			
@@ -567,6 +569,7 @@ class DamAjaxForm {
 		url = ('endpoint' in params) ? url+params.endpoint : ((formAction) ? formAction : url)
 		
 		let method = ('method' in params) ? params.method : ((formMethod) ? formMethod : 'POST')
+		let basicAuth = ('basicAuth' in params) ? params.basicAuth : null
 		let requestHeader = ('requestHeader' in params) ? params.requestHeader : null
 		let paramsTosend = ('params' in params) ? params.params : this.collectForm(formId)
 		let timeout = params.timeout
@@ -588,6 +591,7 @@ class DamAjaxForm {
 			this.ajaxPromise({
 				url,
 				method,
+				basicAuth,
 				requestHeader,
 				responseParseJson: true,
 				params: paramsTosend,
@@ -652,6 +656,7 @@ class DamAjaxForm {
 		url = ('endpoint' in params) ? url+params.endpoint : url
 
 		let method = ('method' in params) ? params.method : 'POST'
+		let basicAuth = ('basicAuth' in params) ? params.basicAuth : null
 		let requestHeader = ('requestHeader' in params) ? params.requestHeader : ''
 		let attributes = ('attributes' in params) ? params.attributes : []
 		let paramsTosend = ('params' in params && params.params) ? params.params : {}
@@ -684,6 +689,7 @@ class DamAjaxForm {
 			this.ajaxPromise({
 				url,
 				method,
+				basicAuth,
 				requestHeader,
 				responseParseJson: true,
 				params: paramsTosend,
