@@ -5,8 +5,8 @@
     <title>Example sendCall</title>
 </head>
 <body>
-    <!-- you can set the action and method that will be used -->
-	<form id="form-identifier" action="backend.php" method="POST">
+    <!-- you can set the action, enctype and method that will be used -->
+	<form id="form-identifier" action="backend.php" method="POST" enctype="application/x-www-form-urlencoded">
 		
 		<!-- the status label will be shown here -->
 		<div df-statusLabel></div>
@@ -71,7 +71,7 @@
             password: 'password'
         },
         requestHeader: [
-			// {'Content-Type':'multipart/form-data'},
+			// {'Content-Type':'application/json'},
 			// {'Authorization' : 'Bearer 12345678'}, // authentication token
 		],
 		preCall: data => {					// it can be used to validate

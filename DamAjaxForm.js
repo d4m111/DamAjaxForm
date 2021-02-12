@@ -564,6 +564,7 @@ class DamAjaxForm {
 		
 		let formMethod = (element) ? element.getAttribute('method') : ''
 		let formAction = (element) ? element.getAttribute('action') : ''
+		let formEnctype = (element) ? element.getAttribute('enctype') : ''
 		
 		let url = ('url' in params) ? params.url : this.url
 		url = ('endpoint' in params) ? url+params.endpoint : ((formAction) ? formAction : url)
@@ -575,6 +576,30 @@ class DamAjaxForm {
 		let timeout = params.timeout
 		let preCheckResponse = true
 		let backCheckResponse = {}
+
+		if(formEnctype){
+			let flagContentType = false
+			
+			if(requestHeader && typeof requestHeader === 'object'){
+				if(Array.isArray(requestHeader)){
+					for(let k in requestHeader){
+						let v = requestHeader[k];
+
+						if(typeof v === 'object' && v && Object.keys(v)[0] == 'Content-Type'){
+							flagContentType = true
+							break
+						}
+					}
+
+					if(flagContentType === false){
+						requestHeader.push({'Content-Type': formEnctype})
+					}
+				}
+			}else{
+				requestHeader = []
+				requestHeader.push({'Content-Type': formEnctype})
+			}
+		}
 
 		if(typeof params.preCall == "function"){
 			preCheckResponse = params.preCall(paramsTosend)
