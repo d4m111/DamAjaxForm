@@ -479,7 +479,11 @@ class DamAjaxForm {
 			xhr.open(params.method, params.url, params.async);
 
 			if((typeof params.basicAuth === 'object' && 'user' in params.basicAuth && 'password' in params.basicAuth)){
-				params.requestHeader.push({'Authorization' : 'Basic '+btoa(`${params.basicAuth.user}:${params.basicAuth.password}`)})
+				xhr.setRequestHeader('Authorization','Basic '+btoa(`${params.basicAuth.user}:${params.basicAuth.password}`))
+			}
+
+			if(params.responseParseJson === true){
+				xhr.setRequestHeader('Content-Type','application/json')
 			}
 
 			if(params && typeof params.requestHeader === 'object' && params.requestHeader){
