@@ -483,7 +483,7 @@ class DamAjaxForm {
 			}
 
 			if(params.responseParseJson === true){
-				xhr.setRequestHeader('Content-Type','application/json')
+				xhr.setRequestHeader('Content-Type','application/json') // si se definió otro contentType, este va a ser pisado
 			}
 
 			if(params && typeof params.requestHeader === 'object' && params.requestHeader){

@@ -6,5 +6,5 @@ if($_SERVER['PHP_AUTH_USER'] != 'username' || $_SERVER['PHP_AUTH_PW'] != 'passwo
 
 sleep(3);
 
-// var_export($_REQUEST);
-echo json_encode($_REQUEST);
+echo json_encode(getallheaders());
+// echo json_encode($_REQUEST);
